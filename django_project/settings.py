@@ -26,7 +26,7 @@ SECRET_KEY = 'cb141294dece657863ac4352dd4a39e33468b26cce15fec0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['advamedwork.herokuapp.com']
 
 
 # Application definition
