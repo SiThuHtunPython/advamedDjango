@@ -1,0 +1,184 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<!doctype html>
+
+
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--  Datatables  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+
+    <!--  extension responsive  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <title>Advamed - Home</title>
+
+
+</head>
+<body>
+
+<br/><br/><br/>
+
+
+<div class="container">
+    <div class="row">
+        <div>
+            <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+                <style>
+                    th {
+                    text-align: center;
+                    }
+
+                    td {
+                    text-align: center;
+                    }
+                </style>
+                <thead style="background-color:#1787e3;color: white;">
+                <tr>
+                    <th style="background-color: #33ffeb;" colspan="10">Identification</th>
+                    <th style="background-color: #f6ff00;" colspan="4">1st Maintenance</th>
+                    <th style="background-color: #00ff08;" colspan="4">2st Maintenance</th>
+                    <th style="background-color: #ffa200;" colspan="4">3st Maintenance</th>
+                    <th style="background-color: #0077ff;" colspan="4">4st Maintenance</th>
+                </tr>
+                <tr>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Product Description No</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>S/N</th>
+                    <th>Hospital</th>
+                    <th>City</th>
+                    <th>Installation/ Service Contract Doc. No.</th>
+                    <th>Installed/ Service Contract Date</th>
+                    <th>Service Contact Package</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for maintenance_data in posts %}
+                <tr>
+                    <td>
+                        <a href="{% url 'maintenance_data-detail' maintenance_data.id %}">
+                            {{ maintenance_data.no }}
+                        </a>
+                    </td>
+                    <td>{{ maintenance_data.product_description }}</td>
+                    <td>{{ maintenance_data.brand }}</td>
+                    <td>{{ maintenance_data.model }}</td>
+                    <td>{{ maintenance_data.s_n }}</td>
+                    <td>{{ maintenance_data.hospital }}</td>
+                    <td>{{ maintenance_data.city }}</td>
+                    <td>{{ maintenance_data.installation_service_contract_doc_no }}</td>
+                    <td>{{ maintenance_data.installed_service_contract_date }}</td>
+                    <td>{{ maintenance_data.service_contract_package }}</td>
+                    <td>{{ maintenance_data.first_date }}</td>
+                    <td>{{ maintenance_data.first_doc_no }}</td>
+                    <td>{{ maintenance_data.first_provider }}</td>
+                    <td>{{ maintenance_data.first_remark }}</td>
+                    <td>{{ maintenance_data.second_date }}</td>
+                    <td>{{ maintenance_data.second_doc_no }}</td>
+                    <td>{{ maintenance_data.second_provider }}</td>
+                    <td>{{ maintenance_data.second_remark }}</td>
+                    <td>{{ maintenance_data.third_date }}</td>
+                    <td>{{ maintenance_data.third_doc_no }}</td>
+                    <td>{{ maintenance_data.third_provider }}</td>
+                    <td>{{ maintenance_data.third_remark }}</td>
+                    <td>{{ maintenance_data.fourth_date }}</td>
+                    <td>{{ maintenance_data.fourth_doc_no }}</td>
+                    <td>{{ maintenance_data.fourth_provider }}</td>
+                    <td>{{ maintenance_data.fourth_remark }}</td>
+                </tr>
+                {% endfor %}
+
+
+                </tbody>
+                <tfoot style="background-color:#1787e3;color: white;">
+                <tr>
+                    <th>No.</th>
+                    <th>Product Description No</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>S/N</th>
+                    <th>Hospital</th>
+                    <th>City</th>
+                    <th>Installation/ Service Contract Doc. No.</th>
+                    <th>Installed/ Service Contract Date</th>
+                    <th>Service Contact Package</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                    <th>Date</th>
+                    <th>Doc No.</th>
+                    <th>Provider</th>
+                    <th>Remark</th>
+                </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!--   Datatables-->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+<!-- extension responsive -->
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+    } );
+
+    </script>
+
+
+</body>
+</html>
+
+{% endblock content %}

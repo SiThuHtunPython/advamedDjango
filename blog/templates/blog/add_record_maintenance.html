@@ -1,0 +1,65 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<style>
+  input[type=text]{
+      width:100%;
+      border:2px solid #aaa;
+      border-radius:4px;
+      margin:8px 0;
+      outline:none;
+      padding:8px;
+      box-sizing:border-box;
+      transition:.3s;
+    }
+
+    input[type=text]:focus{
+      border-color:dodgerBlue;
+      box-shadow:0 0 8px 0 dodgerBlue;
+    }
+
+    input[type=date]{
+      width:100%;
+      border:2px solid #aaa;
+      border-radius:4px;
+      margin:8px 0;
+      outline:none;
+      padding:8px;
+      box-sizing:border-box;
+      transition:.3s;
+    }
+
+    input[type=date]:focus{
+      border-color:dodgerBlue;
+      box-shadow:0 0 8px 0 dodgerBlue;
+    }
+</style>
+<input type="text" placeholder="No.">
+<input type="text" placeholder="Product Description">
+<input type="text" placeholder="Brand">
+<input type="text" placeholder="Model">
+<input type="text" placeholder="S/N">
+<input type="text" placeholder="Hospital">
+<input type="text" placeholder="City">
+<input type="text" placeholder="Installation/ Service Contract Doc. No.">
+<input type="date" placeholder="Installed/ Service Contract Date">
+<input type="text" placeholder="Service Contact Package">
+<input type="date" placeholder="1st Maintenance Date">
+<input type="text" placeholder="1st Maintenance Doc No.">
+<input type="text" placeholder="1st Maintenance Provider">
+<input type="text" placeholder="1st Maintenance Remark">
+<input type="date" placeholder="2st Maintenance Date">
+<input type="text" placeholder="2st Maintenance Doc No.">
+<input type="text" placeholder="2st Maintenance Provider">
+<input type="text" placeholder="2st Maintenance Remark">
+<input type="date" placeholder="3st Maintenance Date">
+<input type="text" placeholder="3st Maintenance Doc No.">
+<input type="text" placeholder="3st Maintenance Provider">
+<input type="text" placeholder="3st Maintenance Remark">
+<input type="date" placeholder="4st Maintenance Date">
+<input type="text" placeholder="4st Maintenance Doc No.">
+<input type="text" placeholder="4st Maintenance Provider">
+<input type="text" placeholder="4st Maintenance Remark">
+
+
+{% endblock content %}

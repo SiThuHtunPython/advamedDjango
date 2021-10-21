@@ -1,0 +1,198 @@
+{% extends "blog/base6.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--  Datatables  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+
+    <!--  extension responsive  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <title>Advamed - Installation Record</title>
+
+
+</head>
+<body>
+
+<br/><br/><br/>
+
+
+<div class="container">
+    <div class="row">
+        <div>
+            <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+                <style>
+                    th {
+                    text-align: center;
+                    }
+
+                    td {
+                    text-align: center;
+                    }
+                </style>
+                <thead style="background-color:#1787e3;color: white;">
+                <tr>
+                    <th style="background-color: #ff0000;" colspan="12">Installation Request Record</th>
+                    <th style="background-color: #00c8ff;" colspan="3">Installation Request Receive</th>
+                    <th style="background-color: #1100ff;" colspan="6">Assign Order</th>
+                    <th style="background-color: #292836;" colspan="11">Installation Record</th>
+                </tr>
+                <tr>
+                    <th>&nbsp;Case No.&nbsp;</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Name of Hospital</th>
+                    <th>Address</th>
+                    <th>Contact Person</th>
+                    <th>Contact Number</th>
+                    <th>Product Description</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>S/N</th>
+                    <th>Referred by</th>
+                    <th>Receiver Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Assign By</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Expected Duration</th>
+                    <th>Assign To</th>
+                    <th>Remark</th>
+                    <th>Installation Doc. No.</th>
+                    <th>Ref. Inovice/ Contract No.</th>
+                    <th>Installed Date</th>
+                    <th>Installed By</th>
+                    <th>Service Contact Package</th>
+                    <th>Warranty Card No.</th>
+                    <th>Machine Warranty Expiry Date</th>
+                    <th>Service Warranty Expiry Date</th>
+                    <th>Installation Duration</th>
+                    <th>Recorded by</th>
+                    <th>Remark</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for installation_record_data in installation_records %}
+                <tr>
+                    <td>
+                        <a href="{% url 'installation_record_data-detail' installation_record_data.id %}">
+                            {{ installation_record_data.case_no }}
+                        </a>
+                    </td>
+                    <td>{{ installation_record_data.date }}</td>
+                    <td>{{ installation_record_data.time }}</td>
+                    <td>{{ installation_record_data.name_of_hospital }}</td>
+                    <td>{{ installation_record_data.address }}</td>
+                    <td>{{ installation_record_data.contact_person }}</td>
+                    <td>{{ installation_record_data.contact_number }}</td>
+                    <td>{{ installation_record_data.product_description }}</td>
+                    <td>{{ installation_record_data.brand }}</td>
+                    <td>{{ installation_record_data.model }}</td>
+                    <td>{{ installation_record_data.s_n }}</td>
+                    <td>{{ installation_record_data.referred_by }}</td>
+                    <td>{{ installation_record_data.receiver_name }}</td>
+                    <td>{{ installation_record_data.receive_date }}</td>
+                    <td>{{ installation_record_data.receive_time }}</td>
+                    <td>{{ installation_record_data.assign_by }}</td>
+                    <td>{{ installation_record_data.assign_date }}</td>
+                    <td>{{ installation_record_data.assign_time }}</td>
+                    <td>{{ installation_record_data.expected_duration }}</td>
+                    <td>{{ installation_record_data.assign_to }}</td>
+                    <td>{{ installation_record_data.assign_remark }}</td>
+                    <td>{{ installation_record_data.installation_doc_no }}</td>
+                    <td>{{ installation_record_data.ref_inovice_contract_no }}</td>
+                    <td>{{ installation_record_data.installed_date }}</td>
+                    <td>{{ installation_record_data.installed_by }}</td>
+                    <td>{{ installation_record_data.service_contact_package }}</td>
+                    <td>{{ installation_record_data.warranty_card_no }}</td>
+                    <td>{{ installation_record_data.machine_warranty_expiry_date }}</td>
+                    <td>{{ installation_record_data.service_warranty_expiry_date }}</td>
+                    <td>{{ installation_record_data.installation_duration }}</td>
+                    <td>{{ installation_record_data.record_by }}</td>
+                    <td>{{ installation_record_data.installation_remark }}</td>
+                </tr>
+                {% endfor %}
+
+
+                </tbody>
+                <tfoot style="background-color:#1787e3;color: white;">
+                <tr>
+                    <th>&nbsp;Case No.&nbsp;</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Name of Hospital</th>
+                    <th>Contact Person</th>
+                    <th>Contact Number</th>
+                    <th>Product Description</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>S/N</th>
+                    <th>Complaint</th>
+                    <th>Referred by</th>
+                    <th>Receiver Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Assign By</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Expected Duration</th>
+                    <th>Assign To</th>
+                    <th>Remark</th>
+                    <th>Open/Close</th>
+                    <th>Service Report Doc. No.</th>
+                    <th>Inception</th>
+                    <th>Repair Description</th>
+                    <th>Spare Part Request Doc. No.</th>
+                    <th>Warranty Card No.</th>
+                    <th>Service Start Date</th>
+                    <th>Service Finished Date</th>
+                    <th>Service Total Time</th>
+                    <th>Remark</th>
+                    <th>Recorded by</th>
+                </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!--   Datatables-->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+<!-- extension responsive -->
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+    } );
+
+    </script>
+
+
+</body>
+</html>
+
+{% endblock content %}

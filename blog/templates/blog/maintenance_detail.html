@@ -1,0 +1,128 @@
+{% extends "blog/base3.html" %}
+{% block content %}
+{% if object.author %}
+<title>Advamed - Record Detail</title>
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'user-maintenance_data' object.author.username %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted }}</small>
+        </div>
+        <h2 class="article-title">No. {{ object.no }}</h2>
+
+        <style>
+      input[type=text]{
+          width:100%;
+          border:2px solid #aaa;
+          border-radius:4px;
+          margin:8px 0;
+          outline:none;
+          padding:8px;
+          box-sizing:border-box;
+          transition:.3s;
+        }
+
+        input[type=text]:focus{
+          border-color:dodgerBlue;
+          box-shadow:0 0 8px 0 dodgerBlue;
+        }
+
+        input[type=date]{
+          width:100%;
+          border:2px solid #aaa;
+          border-radius:4px;
+          margin:8px 0;
+          outline:none;
+          padding:8px;
+          box-sizing:border-box;
+          transition:.3s;
+        }
+
+        input[type=date]:focus{
+          border-color:dodgerBlue;
+          box-shadow:0 0 8px 0 dodgerBlue;
+        }
+      </style>
+
+        <h5 style="color:#0c3c60">Product Description</h5>
+        <input type="text" placeholder="{{ object.product_description }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Brand</h5>
+        <input type="text" placeholder="{{ object.brand }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Model</h5>
+        <input type="text" placeholder="{{ object.model }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">S/N</h5>
+        <input type="text" placeholder="{{ object.s_n }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Hospital</h5>
+        <input type="text" placeholder="{{ object.hospital }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">City</h5>
+        <input type="text" placeholder="{{ object.city }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Installation Service Contract Doc No.</h5>
+        <input type="text" placeholder="{{ object.installation_service_contract_doc_no }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Installed Service Contract Date</h5>
+        <input type="text" placeholder="{{ object.installed_service_contract_date }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Service Contract Package</h5>
+        <input type="text" placeholder="{{ object.service_contract_package }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">First Date</h5>
+        <input type="text" placeholder="{{ object.first_date }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">First Doc No.</h5>
+        <input type="text" placeholder="{{ object.first_doc_no }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">First Provider</h5>
+        <input type="text" placeholder="{{ object.first_provider }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">First Remark</h5>
+        <input type="text" placeholder="{{ object.first_remark }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Second Date</h5>
+        <input type="text" placeholder="{{ object.second_date }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Second Doc No.</h5>
+        <input type="text" placeholder="{{ object.second_doc_no }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Second Provider</h5>
+        <input type="text" placeholder="{{ object.second_provider }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Second Remark</h5>
+        <input type="text" placeholder="{{ object.second_remark }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Third Date</h5>
+        <input type="text" placeholder="{{ object.third_date }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Third Doc No.</h5>
+        <input type="text" placeholder="{{ object.third_doc_no }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Third Provider</h5>
+        <input type="text" placeholder="{{ object.third_provider }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Third Remark</h5>
+        <input type="text" placeholder="{{ object.third_remark }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Fourth Date</h5>
+        <input type="text" placeholder="{{ object.fourth_date }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Fourth Doc No.</h5>
+        <input type="text" placeholder="{{ object.fourth_doc_no }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Fourth Provider</h5>
+        <input type="text" placeholder="{{ object.fourth_provider }}" readonly="readonly">
+
+        <h5 style="color:#0c3c60">Fourth Remark</h5>
+        <input type="text" placeholder="{{ object.fourth_remark }}" readonly="readonly">
+
+    </div>
+</article>
+{% else %}
+<h1>This User Doesn't Exist Anymore</h1>
+{% endif %}
+{% endblock content %}

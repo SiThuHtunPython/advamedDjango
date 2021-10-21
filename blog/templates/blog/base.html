@@ -1,0 +1,219 @@
+{% load static %}
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+		$(document).ready(function(){
+			$(".hamburger").click(function(){
+			   $(".wrapper").toggleClass("collapse");
+			});
+		});
+	</script>
+
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+            <style>
+                body {
+                  font-family: "Lato", sans-serif;
+                }
+
+                .sidenav {
+                  height: 100%;
+                  width: 0;
+                  position: fixed;
+                  z-index: 1;
+                  top: 0;
+                  left: 0;
+                  background-color: #242626;
+                  overflow-x: hidden;
+                  transition: 0.5s;
+                  padding-top: 60px;
+                }
+
+                .sidenav a {
+                  padding: 8px 8px 8px 32px;
+                  text-decoration: none;
+                  font-size: 25px;
+                  color: #FFFFFF;
+                  display: block;
+                  transition: 0.5s;
+                }
+
+                .sidenav a:hover {
+                  color: #f1f1f1;
+                }
+
+                .sidenav .closebtn {
+                  position: absolute;
+                  top: 0;
+                  right: 25px;
+                  font-size: 36px;
+                  margin-left: 50px;
+                }
+
+                #main {
+                  transition: margin-left 0.5s;
+                }
+
+                @media screen and (max-height: 450px) {
+                  .sidenav {padding-top: 15px;}
+                  .sidenav a {font-size: 18px;}
+                }
+                </style>
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                {% if user.is_authenticated and user.is_staff %}
+                <a href="{% url 'maintenance_data-create' %}">Add Record</a>
+                {% elif perms.blog.change_maintenance %}
+                <a href="{% url 'maintenance_data-create' %}">Add Record</a>
+                <br/>
+                <a href="{% url 'service-record_data-request' %}">Request Service Record</a>
+                <br/>
+                <a href="{% url 'installation-record_data-request' %}">Request Installation Record</a>
+                {% else %}
+                <a href="{% url 'service-record_data-request' %}">Request Record</a>
+                {% endif %}
+                <br/>
+
+            </div>
+            <span class="navbar-brand mr-4" onclick="openNav()" id="main">&#9776; Menu</span>
+            <script>
+                  function openNav() {
+                  document.getElementById("mySidenav").style.width = "210px";
+                  document.getElementById("main").style.marginLeft = "200px";
+                  }
+                  function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+                  document.getElementById("main").style.marginLeft= "0";
+                  }
+                </script>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+
+                    <style>
+                        .dropbtn {
+                          background-color: #3498DB;
+                          color: white;
+                          padding: 16px;
+                          font-size: 16px;
+                          border: none;
+                          cursor: pointer;
+                        }
+
+                        .dropbtn:hover, .dropbtn:focus {
+                          background-color: #2980B9;
+                        }
+
+                        .dropdown {
+                          position: relative;
+                          display: inline-block;
+                        }
+
+                        .dropdown-content {
+                          display: none;
+                          position: absolute;
+                          background-color: #f1f1f1;
+                          min-width: 160px;
+                          overflow: auto;
+                          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                          z-index: 1;
+                        }
+
+                        .dropdown-content a {
+                          color: black;
+                          padding: 12px 16px;
+                          text-decoration: none;
+                          display: block;
+                        }
+
+                        .dropdown a:hover {background-color: #ddd;}
+
+                        .show {display: block;}
+                        </style>
+                    <a onclick="myFunction()" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Records
+                    </a>
+                    <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                        {% if user.is_authenticated and user.is_staff %}
+                        <a class="dropdown-item" href="{% url 'blog-home' %}">Preventive Maintenance History Record</a>
+                        <a class="dropdown-item" href="{% url 'service_record' %}">Service Record</a>
+                        <a class="dropdown-item" href="{% url 'installation_record' %}">Installation Record</a>
+                        {% elif perms.blog.change_maintenance %}
+                        <a class="dropdown-item" href="{% url 'blog-home' %}">Preventive Maintenance History Record</a>
+                        <a class="dropdown-item" href="{% url 'service_record' %}">Service Record</a>
+                        <a class="dropdown-item" href="{% url 'installation_record' %}">Installation Record</a>
+                        {% else %}
+                        <a class="dropdown-item" href="{% url 'service_record' %}">Service Record</a>
+                        <a class="dropdown-item" href="{% url 'installation_record' %}">Installation Record</a>
+                        {% endif %}
+                    </div>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                          document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        // Close the dropdown if the user clicks outside of it
+                        window.onclick = function(event) {
+                          if (!event.target.matches('.dropdown-toggle')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                              var openDropdown = dropdowns[i];
+                              if (openDropdown.classList.contains('show')) {
+                                openDropdown.classList.remove('show');
+                              }
+                            }
+                          }
+                        }
+                        </script>
+
+                </div>
+                <!-- Navbar Right Side -->
+
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                    {% if user.is_authenticated and user.is_staff and user.is_superuser %}
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                    {% endif %}
+                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% block content %}{% endblock %}
+            <br/>
+        </div>
+    </div>
+</main>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+</html>

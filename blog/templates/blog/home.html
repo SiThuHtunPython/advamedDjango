@@ -1,0 +1,395 @@
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+		$(document).ready(function(){
+			$(".hamburger").click(function(){
+			   $(".wrapper").toggleClass("collapse");
+			});
+		});
+	</script>
+
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+            <style>
+                body {
+                  font-family: "Lato", sans-serif;
+                }
+
+                .sidenav {
+                  height: 100%;
+                  width: 0;
+                  position: fixed;
+                  z-index: 1;
+                  top: 0;
+                  left: 0;
+                  background-color: #242626;
+                  overflow-x: hidden;
+                  transition: 0.5s;
+                  padding-top: 60px;
+                }
+
+                .sidenav a {
+                  padding: 8px 8px 8px 32px;
+                  text-decoration: none;
+                  font-size: 25px;
+                  color: #FFFFFF;
+                  display: block;
+                  transition: 0.5s;
+                }
+
+                .sidenav a:hover {
+                  color: #f1f1f1;
+                }
+
+                .sidenav .closebtn {
+                  position: absolute;
+                  top: 0;
+                  right: 25px;
+                  font-size: 36px;
+                  margin-left: 50px;
+                }
+
+                #main {
+                  transition: margin-left 0.5s;
+                }
+
+                @media screen and (max-height: 450px) {
+                  .sidenav {padding-top: 15px;}
+                  .sidenav a {font-size: 18px;}
+                }
+                </style>
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="{% url 'maintenance_data-create' %}">Add Record</a>
+                <br/>
+
+            </div>
+            <span class="navbar-brand mr-4" onclick="openNav()" id="main">&#9776; Menu</span>
+            <script>
+                  function openNav() {
+                  document.getElementById("mySidenav").style.width = "210px";
+                  document.getElementById("main").style.marginLeft = "200px";
+                  }
+                  function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+                  document.getElementById("main").style.marginLeft= "0";
+                  }
+                </script>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+
+                    <style>
+                        .dropbtn {
+                          background-color: #3498DB;
+                          color: white;
+                          padding: 16px;
+                          font-size: 16px;
+                          border: none;
+                          cursor: pointer;
+                        }
+
+                        .dropbtn:hover, .dropbtn:focus {
+                          background-color: #2980B9;
+                        }
+
+                        .dropdown {
+                          position: relative;
+                          display: inline-block;
+                        }
+
+                        .dropdown-content {
+                          display: none;
+                          position: absolute;
+                          background-color: #f1f1f1;
+                          min-width: 160px;
+                          overflow: auto;
+                          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                          z-index: 1;
+                        }
+
+                        .dropdown-content a {
+                          color: black;
+                          padding: 12px 16px;
+                          text-decoration: none;
+                          display: block;
+                        }
+
+                        .dropdown a:hover {background-color: #ddd;}
+
+                        .show {display: block;}
+                        </style>
+                    <a onclick="myFunction()" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Records
+                    </a>
+                    <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'blog-home' %}">Preventive Maintenance History Record</a>
+                        <a class="dropdown-item" href="{% url 'service_record' %}">Service Record</a>
+                        <a class="dropdown-item" href="{% url 'installation_record' %}">Installation Record</a>
+                    </div>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                          document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        // Close the dropdown if the user clicks outside of it
+                        window.onclick = function(event) {
+                          if (!event.target.matches('.dropdown-toggle')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                              var openDropdown = dropdowns[i];
+                              if (openDropdown.classList.contains('show')) {
+                                openDropdown.classList.remove('show');
+                              }
+                            }
+                          }
+                        }
+                        </script>
+
+                </div>
+                <!-- Navbar Right Side -->
+
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <!doctype html>
+
+
+            <html lang="en">
+            <head>
+                <!-- Required meta tags -->
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+                <!--  Datatables  -->
+                <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+
+                <!--  extension responsive  -->
+                <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+                <title>Advamed - Home</title>
+
+
+            </head>
+            <body>
+
+            <br/><br/><br/>
+
+
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+                            <style>
+                    th {
+                    text-align: center;
+                    }
+
+                    td {
+                    text-align: center;
+                    }
+                </style>
+                            <thead style="background-color:#1787e3;color: white;">
+                            <tr>
+                                <th style="background-color: #33ffeb;" colspan="10">Identification</th>
+                                <th style="background-color: #f6ff00;" colspan="4">1st Maintenance</th>
+                                <th style="background-color: #00ff08;" colspan="4">2st Maintenance</th>
+                                <th style="background-color: #ffa200;" colspan="4">3st Maintenance</th>
+                                <th style="background-color: #0077ff;" colspan="4">4st Maintenance</th>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>Product Description No</th>
+                                <th>Brand</th>
+                                <th>Model</th>
+                                <th>S/N</th>
+                                <th>Hospital</th>
+                                <th>City</th>
+                                <th>Installation/ Service Contract Doc. No.</th>
+                                <th>Installed/ Service Contract Date</th>
+                                <th>Service Contact Package</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for maintenance_data in posts %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'maintenance_data-detail' maintenance_data.id %}">
+                                        {{ maintenance_data.no }}
+                                    </a>
+                                </td>
+                                <td>{{ maintenance_data.product_description }}</td>
+                                <td>{{ maintenance_data.brand }}</td>
+                                <td>{{ maintenance_data.model }}</td>
+                                <td>{{ maintenance_data.s_n }}</td>
+                                <td>{{ maintenance_data.hospital }}</td>
+                                <td>{{ maintenance_data.city }}</td>
+                                <td>{{ maintenance_data.installation_service_contract_doc_no }}</td>
+                                <td>{{ maintenance_data.installed_service_contract_date }}</td>
+                                <td>{{ maintenance_data.service_contract_package }}</td>
+                                <td>{{ maintenance_data.first_date }}</td>
+                                <td>{{ maintenance_data.first_doc_no }}</td>
+                                <td>{{ maintenance_data.first_provider }}</td>
+                                <td>{{ maintenance_data.first_remark }}</td>
+                                <td>{{ maintenance_data.second_date }}</td>
+                                <td>{{ maintenance_data.second_doc_no }}</td>
+                                <td>{{ maintenance_data.second_provider }}</td>
+                                <td>{{ maintenance_data.second_remark }}</td>
+                                <td>{{ maintenance_data.third_date }}</td>
+                                <td>{{ maintenance_data.third_doc_no }}</td>
+                                <td>{{ maintenance_data.third_provider }}</td>
+                                <td>{{ maintenance_data.third_remark }}</td>
+                                <td>{{ maintenance_data.fourth_date }}</td>
+                                <td>{{ maintenance_data.fourth_doc_no }}</td>
+                                <td>{{ maintenance_data.fourth_provider }}</td>
+                                <td>{{ maintenance_data.fourth_remark }}</td>
+                            </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                            <tfoot style="background-color:#1787e3;color: white;">
+                            <tr>
+                                <th>No.</th>
+                                <th>Product Description No</th>
+                                <th>Brand</th>
+                                <th>Model</th>
+                                <th>S/N</th>
+                                <th>Hospital</th>
+                                <th>City</th>
+                                <th>Installation/ Service Contract Doc. No.</th>
+                                <th>Installed/ Service Contract Date</th>
+                                <th>Service Contact Package</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                                <th>Date</th>
+                                <th>Doc No.</th>
+                                <th>Provider</th>
+                                <th>Remark</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+            <!--   Datatables-->
+            <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+            <!-- extension responsive -->
+            <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+
+
+            <script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+    } );
+
+    </script>
+
+
+            </body>
+            </html>
+
+            {% elif user.is_authenticated and user.is_staff %}
+
+            {% include "blog/maintenance2.html" %}
+
+            {% elif perms.blog.change_maintenance %}
+
+            {% include "blog/maintenance2.html" %}
+
+            {% else %}
+
+            {% include "blog/service_record.html" %}
+
+            {% endif %}
+
+            <br/>
+        </div>
+    </div>
+</main>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+</body>
+</html>
