@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -144,6 +145,20 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'advamedmedical1@gmail.com'
 EMAIL_HOST_PASSWORD = 'Chekoilar11'
+
+AWS_ACCESS_KEY_ID = "AKIATK6QYTPVNN2AB6AU"
+AWS_SECRET_ACCESS_KEY = "loETJ0uqjXsQg7yPoVdpv31F2oavB2XPgouMJo7H"
+AWS_STORAGE_BUCKET_NAME = "advamed-service"
+
+AWS_S3_REGION_NAME = 'us-east-2' #change to your region
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_ADDRESSING_STYLE = "virtual"
+
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 django_heroku.settings(locals())
